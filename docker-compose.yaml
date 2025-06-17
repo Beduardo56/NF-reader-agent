@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  nf-chat:
+    build: .
+    ports:
+      - "8501:8501"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+    volumes:
+      - ./data:/app/data
+      - ./temp_data:/app/temp_data
+    command: streamlit run app.py --server.port=8501 --server.address=0.0.0.0
